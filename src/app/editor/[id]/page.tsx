@@ -136,6 +136,7 @@ export default function EditorPage() {
               <SectionRenderer
                 key={section.id}
                 section={section}
+                mode={"edit"}
                 isSelected={selectedSection === section.id}
                 selectedComponentId={selectedComponent}
                 onSelectSection={(id) => {

@@ -4,6 +4,7 @@ import { ComponentRenderer } from "./component-renderer";
 
 type Props = {
   section: Section;
+  mode: "edit" | "view";
   isSelected?: boolean;
   selectedComponentId?: string | null;
   onSelectSection: (id: string) => void;
@@ -12,6 +13,7 @@ type Props = {
 
 export function SectionRenderer({
   section,
+  mode,
   isSelected,
   selectedComponentId,
   onSelectSection,
@@ -70,7 +72,7 @@ export function SectionRenderer({
           <ComponentRenderer
             sectionId={section.id}
             component={component}
-            mode={"edit"}
+            mode={mode}
             selectedComponentId={selectedComponentId}
           />
         </div>

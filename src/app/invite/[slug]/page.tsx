@@ -23,6 +23,7 @@ const InvitePage = () => {
     <>
       {invitation?.sections.map((section) => (
         <SectionRenderer
+          mode={"view"}
           key={section.id}
           section={section}
           onSelectSection={() => {}}

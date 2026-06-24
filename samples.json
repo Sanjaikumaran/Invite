@@ -1,91 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useEditor } from "@/store/editor.store";
-import { Invitation } from "@/types/invitation";
-
-export default function CreateInvitationPage() {
-  const router = useRouter();
-  const setInvitation = useEditor((s) => s.setInvitation);
-
-  const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [jsonInput, setJsonInput] = useState("");
-
-  const handleCreate = async () => {
-    if (!title.trim()) return;
-
-    setLoading(true);
-
-    const slug =
-      title.trim().toLowerCase().replace(/\s+/g, "-") + "-" + Date.now();
-
-    let invitation: Invitation;
-
-    try {
-      if (jsonInput.trim()) {
-        invitation = JSON.parse(jsonInput);
-
-        invitation = {
-          ...invitation,
-          title,
-          slug,
-          updatedAt: new Date().toISOString(),
-        };
-      } else {
-        invitation = {
-          id: crypto.randomUUID(),
-          slug,
-          title,
-          status: "draft",
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          sections: [
-            {
-              id: crypto.randomUUID(),
-              type: "hero",
-              layout: {
-                align: "center",
-                width: "full",
-                padding: 40,
-                height: 0,
-                justifyContent: "center",
-              },
-              components: [],
-            },
-          ],
-        };
-      }
-
-      localStorage.setItem(slug, JSON.stringify(invitation));
-
-      setInvitation(invitation);
-
-      router.push(`/editor/${slug}`);
-    } catch {
-      alert("Invalid JSON");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-[420px] bg-white border rounded-xl p-6 space-y-4">
-        <h1 className="text-xl font-semibold">Create Invitation</h1>
-
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter invitation title"
-          className="w-full border px-3 py-2 rounded"
-        />
-
-        <textarea
-          value={
-            jsonInput ||
-            `{
+{
   "id": "api-workshop-demo-001",
   "slug": "modern-api-engineering-workshop",
   "title": "Modern API Engineering Workshop",
@@ -645,21 +558,326 @@ export default function CreateInvitationPage() {
     }
   ]
 }
-`
-          }
-          onChange={(e) => setJsonInput(e.target.value)}
-          placeholder="Paste invitation JSON (optional)"
-          className="w-full min-h-[220px] border px-3 py-2 rounded font-mono text-sm"
-        />
 
-        <button
-          onClick={handleCreate}
-          disabled={loading}
-          className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 disabled:opacity-50"
-        >
-          {loading ? "Creating..." : "Create"}
-        </button>
-      </div>
-    </div>
-  );
+{
+    "id": "api-workshop-demo-001",
+    "slug": "modern-api-engineering-workshop",
+    "title": "Modern API Engineering Workshop",
+    "status": "published",
+    "createdAt": "2026-06-24T10:00:00Z",
+    "updatedAt": "2026-06-24T10:00:00Z",
+    "sections": [
+        {
+            "id": "hero",
+            "type": "hero",
+            "layout": {
+                "align": "center",
+                "justifyContent": "center",
+                "width": "full",
+                "padding": 80,
+                "height": 750,
+                "background": {
+                    "type": "gradient",
+                    "value": {
+                        "type": "linear",
+                        "angle": 135,
+                        "stops": [
+                            {
+                                "id": "1",
+                                "color": "#071326",
+                                "position": 0
+                            },
+                            {
+                                "id": "2",
+                                "color": "#1D4ED8",
+                                "position": 55
+                            },
+                            {
+                                "id": "3",
+                                "color": "#0EA5E9",
+                                "position": 100
+                            }
+                        ]
+                    }
+                }
+            },
+            "components": [
+                {
+                    "id": "b1",
+                    "type": "badge",
+                    "value": "LIVE • ENTERPRISE API WORKSHOP",
+                    "style": {
+                        "fontSize": 14,
+                        "fontWeight": 700,
+                        "color": "#93C5FD",
+                        "padding": 14
+                    }
+                },
+                {
+                    "id": "t1",
+                    "type": "title",
+                    "value": "Build Enterprise APIs Like Teams Inside Modern IT Companies",
+                    "style": {
+                        "fontSize": 82,
+                        "fontWeight": 900,
+                        "textAlign": "center",
+                        "width": 1200,
+                        "background": {
+                            "type": "linear",
+                            "angle": 90,
+                            "stops": [
+                                {
+                                    "id": "a",
+                                    "color": "#ffffff",
+                                    "position": 0
+                                },
+                                {
+                                    "id": "b",
+                                    "color": "#7DD3FC",
+                                    "position": 100
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "id": "desc",
+                    "type": "text",
+                    "value": "Design, secure, deploy and scale production-grade APIs using the same architecture patterns used by engineering teams worldwide.",
+                    "style": {
+                        "fontSize": 26,
+                        "width": 900,
+                        "textAlign": "center",
+                        "color": "#DBEAFE"
+                    }
+                },
+                {
+                    "id": "btn",
+                    "type": "button",
+                    "value": "Reserve Seat →",
+                    "action": {
+                        "type": "navigate",
+                        "url": "https://app.emergent.sh/landing/?utm_adgroup=1313919305462081&matchtype=b&device=c&network=o&msclkid=322fe552bdbe1581921f8f690df3af54&utm_source=bing&utm_medium=cpc&utm_campaign=bing_eg_web_pmax_asia_india_subscribe_bau_all_generic_30042026&utm_term=app.emergent.sh&utm_content=Asset%20Group%201",
+                        "newTab": true
+                    },
+                    "style": {
+                        "fontSize": 18,
+                        "fontWeight": 700,
+                        "padding": 20,
+                        "width": 320,
+                        "borderRadius": 999,
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#2563EB",
+                        "margin": 50
+                    }
+                }
+            ]
+        },
+        {
+            "id": "stats",
+            "type": "section",
+            "layout": {
+                "align": "center",
+                "justifyContent": "center",
+                "width": "full",
+                "padding": 120,
+                "height": 500,
+                "background": {
+                    "type": "color",
+                    "value": "#FFFFFF"
+                }
+            },
+            "components": [
+                {
+                    "id": "s1",
+                    "type": "stat",
+                    "value": "1200+\nDevelopers",
+                    "style": {
+                        "width": 100,
+                        "margin": 20,
+                        "fontWeight": 600
+                    }
+                },
+                {
+                    "id": "s2",
+                    "type": "stat",
+                    "value": "18\nSessions",
+                    "style": {
+                        "width": 100,
+                        "textAlign": "left",
+                        "margin": 20,
+                        "fontWeight": 600
+                    }
+                },
+                {
+                    "id": "s3",
+                    "type": "stat",
+                    "value": "3\nExperts",
+                    "style": {
+                        "width": 100,
+                        "margin": 20,
+                        "fontWeight": 600
+                    }
+                }
+            ]
+        },
+        {
+            "id": "overview",
+            "type": "section",
+            "layout": {
+                "align": "center",
+                "justifyContent": "center",
+                "width": "full",
+                "padding": 140,
+                "height": 650,
+                "background": {
+                    "type": "gradient",
+                    "value": {
+                        "type": "linear",
+                        "angle": 180,
+                        "stops": [
+                            {
+                                "id": "1",
+                                "color": "#F8FAFC",
+                                "position": 0
+                            },
+                            {
+                                "id": "2",
+                                "color": "#EEF2FF",
+                                "position": 100
+                            }
+                        ]
+                    }
+                }
+            },
+            "components": [
+                {
+                    "id": "o1",
+                    "type": "title",
+                    "value": "What You Will Learn",
+                    "style": {
+                        "fontSize": 60,
+                        "fontWeight": 800
+                    }
+                },
+                {
+                    "id": "l1",
+                    "type": "list",
+                    "value": [
+                        "REST Architecture",
+                        "GraphQL",
+                        "JWT Authentication",
+                        "Caching & Redis",
+                        "API Gateway",
+                        "Observability",
+                        "Docker Deployment",
+                        "CI/CD"
+                    ],
+                    "style": {
+                        "fontSize": 26,
+                        "textAlign": "left"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "schedule",
+            "type": "section",
+            "layout": {
+                "align": "center",
+                "justifyContent": "center",
+                "width": "full",
+                "padding": 150,
+                "height": 700,
+                "background": {
+                    "type": "color",
+                    "value": "#081327"
+                }
+            },
+            "components": [
+                {
+                    "id": "st",
+                    "type": "title",
+                    "value": "Workshop Timeline",
+                    "style": {
+                        "fontSize": 64,
+                        "color": "#FFFFFF"
+                    }
+                },
+                {
+                    "id": "timeline",
+                    "type": "list",
+                    "value": [
+                        "Day 1 → API Architecture",
+                        "Day 2 → Security + Auth",
+                        "Day 3 → Deployment + Monitoring"
+                    ],
+                    "style": {
+                        "fontSize": 28,
+                        "color": "#CBD5E1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "cta",
+            "type": "section",
+            "layout": {
+                "align": "center",
+                "justifyContent": "center",
+                "width": "full",
+                "padding": 180,
+                "height": 520,
+                "background": {
+                    "type": "gradient",
+                    "value": {
+                        "type": "linear",
+                        "angle": 135,
+                        "stops": [
+                            {
+                                "id": "1",
+                                "color": "#2563EB",
+                                "position": 0
+                            },
+                            {
+                                "id": "2",
+                                "color": "#06B6D4",
+                                "position": 100
+                            }
+                        ]
+                    }
+                }
+            },
+            "components": [
+                {
+                    "id": "ct1",
+                    "type": "title",
+                    "value": "Start Building Better APIs",
+                    "style": {
+                        "fontSize": 72,
+                        "fontWeight": 900,
+                        "color": "#ffffff"
+                    }
+                },
+                {
+                    "id": "ct2",
+                    "type": "button",
+                    "value": "Join Workshop",
+                    "action": {
+                        "type": "navigate",
+                        "url": "/register"
+                    },
+                    "style": {
+                        "fontSize": 20,
+                        "padding": 20,
+                        "width": 320,
+                        "borderRadius": 999,
+                        "backgroundColor": "#ffffff",
+                        "color": "#2563EB",
+                        "margin": 50
+                    }
+                }
+            ]
+        }
+    ]
 }
