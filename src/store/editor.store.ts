@@ -21,7 +21,9 @@ type Store = {
   removeComponent: (sectionId: string, componentId: string) => void;
 
   addSection: (section: Section) => void;
+
   updateSection: (id: string, section: Partial<Section>) => void;
+
   removeSection: (id: string) => void;
 };
 
@@ -37,9 +39,9 @@ export const useEditor = create<Store>((set) => ({
   },
 
   setInvitation: (data) =>
-    set(() => ({
+    set({
       invitation: data,
-    })),
+    }),
 
   addComponent: (sectionId, _parentId, component) =>
     set((state) => ({
@@ -61,13 +63,22 @@ export const useEditor = create<Store>((set) => ({
       invitation: {
         ...state.invitation,
         sections: state.invitation.sections.map((section) => {
-          if (section.id !== sectionId) return section;
+          if (section.id !== sectionId) {
+            return section;
+          }
 
           return {
             ...section,
-            components: section.components.map((c) =>
-              c.id === componentId ? { ...c, ...patch } : c,
-            ),
+            components: section.components.map((component) => {
+              if (component.id !== componentId) {
+                return component;
+              }
+
+              return {
+                ...component,
+                ...patch,
+              } as Component;
+            }),
           };
         }),
       },
@@ -102,8 +113,13 @@ export const useEditor = create<Store>((set) => ({
     set((state) => ({
       invitation: {
         ...state.invitation,
-        sections: state.invitation.sections.map((s) =>
-          s.id === id ? { ...s, ...patch } : s,
+        sections: state.invitation.sections.map((section) =>
+          section.id === id
+            ? {
+                ...section,
+                ...patch,
+              }
+            : section,
         ),
       },
     })),
@@ -112,7 +128,9 @@ export const useEditor = create<Store>((set) => ({
     set((state) => ({
       invitation: {
         ...state.invitation,
-        sections: state.invitation.sections.filter((s) => s.id !== id),
+        sections: state.invitation.sections.filter(
+          (section) => section.id !== id,
+        ),
       },
     })),
 }));
