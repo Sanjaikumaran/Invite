@@ -3,16 +3,25 @@
 import { SectionRenderer } from "@/components/renderer/section-renderer";
 import { Invitation } from "@/types/invitation";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const InvitePage = () => {
   const id = useParams().slug as string;
-  console.log(id);
+  const [invitation, setInvitation] = useState<Invitation>();
 
-  const invitation: Invitation = JSON.parse(localStorage.getItem(id) || "   ");
+  useEffect(() => {
+    if (id) {
+      const invitation: Invitation = JSON.parse(
+        localStorage.getItem(id) || "   ",
+      );
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setInvitation(invitation);
+    }
+  }, [id]);
 
   return (
     <>
-      {invitation.sections.map((section) => (
+      {invitation?.sections.map((section) => (
         <SectionRenderer
           key={section.id}
           section={section}

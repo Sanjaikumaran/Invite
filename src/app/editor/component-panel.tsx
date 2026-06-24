@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { createComponent } from "@/lib/create-component";
 import { useEditor } from "@/store/editor.store";
 import { Component, COMPONENT_REGISTRY } from "@/types/invitation";
+import Link from "next/link";
 
 type ComponentPanelProps = {
   sectionId: string | null;
@@ -33,7 +34,7 @@ export function ComponentPanel({
     localStorage.setItem(id, JSON.stringify(invitation));
   };
   return (
-    <aside className="border-r p-4 space-y-3">
+    <aside className="border-r p-4 space-y-3 overflow-auto h-screen">
       <h2 className="font-semibold text-sm">Components</h2>
       {sectionId ? (
         <div>
@@ -73,6 +74,14 @@ export function ComponentPanel({
       >
         Save Page
       </button>
+
+      <Link
+        href={`/invite/${id}`}
+        target="_blank"
+        className="w-full mt-4 px-3 py-2 bg-blue-500 text-white rounded"
+      >
+        Open Invite
+      </Link>
     </aside>
   );
 }

@@ -22,42 +22,59 @@ export function SectionRenderer({
     flexDirection: "column",
     alignItems: section.layout.align,
     justifyContent: section.layout.justifyContent,
-    width: section.layout.width,
+    width: section.layout.width || "100%",
     padding: section.layout.padding,
     height: section.layout.height ? `${section.layout.height}px` : "auto",
+    // gap: section.layout.gap || 20,
   };
 
   if (section.layout.background?.type === "gradient") {
     styles.background = constructGradient(section.layout.background.value);
-  } else {
-    styles.background = section.layout.background?.value;
+  }
+
+  if (section.layout.background?.type === "color") {
+    styles.background = section.layout.background.value;
+  }
+
+  if (section.layout.background?.type === "image") {
+    const bg = section.layout.background.value;
+
+    styles.backgroundImage = `url(${bg.url})`;
+
+    styles.backgroundRepeat = bg.repeat || "no-repeat";
+
+    styles.backgroundPosition = bg.position || "center";
+
+    styles.backgroundSize = bg.size || "cover";
   }
 
   return (
-    <div
-      onClick={() => onSelectSection(section.id)}
+    <section
       style={styles}
-      className={isSelected ? "outline outline-2 outline-blue-500" : ""}
+      onClick={() => onSelectSection(section.id)}
+      className={
+        isSelected && !selectedComponentId
+          ? "outline outline-3 outline-green-500"
+          : ""
+      }
     >
-      {section.components.map((component) => {
-        return (
-          <div
-            key={component.id}
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelectSection(section.id);
-              onSelectComponent(component.id);
-            }}
-          >
-            <ComponentRenderer
-              sectionId={section.id}
-              selectedComponentId={selectedComponentId}
-              component={component}
-              mode="edit"
-            />
-          </div>
-        );
-      })}
-    </div>
+      {section.components.map((component) => (
+        <div
+          key={component.id}
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelectSection(section.id);
+            onSelectComponent(component.id);
+          }}
+        >
+          <ComponentRenderer
+            sectionId={section.id}
+            component={component}
+            mode={"edit"}
+            selectedComponentId={selectedComponentId}
+          />
+        </div>
+      ))}
+    </section>
   );
 }

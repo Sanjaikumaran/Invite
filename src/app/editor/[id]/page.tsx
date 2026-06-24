@@ -23,8 +23,13 @@ export default function EditorPage() {
 
   useEffect(() => {
     if (!invitation.id) {
-      const invitation = JSON.parse(localStorage.getItem(id) || "   ");
-      setInvitation(invitation);
+      try {
+        const invitation = JSON.parse(localStorage.getItem(id) || "");
+        console.log(invitation);
+        setInvitation(invitation);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, []);
 
@@ -101,8 +106,8 @@ export default function EditorPage() {
     addSection(section);
     setSelectedSection(section.id);
   };
+  const SCALE = 0.7;
 
-  console.log(selectedSection);
   return (
     <main className="grid h-screen grid-cols-[280px_320px_1fr]">
       {/* LEFT */}
@@ -110,7 +115,6 @@ export default function EditorPage() {
         sectionId={selectedSection}
         handleAddSection={handleAddSection}
       />
-
       {/* MIDDLE */}
       <PropertiesPanel
         sectionId={selectedSection}
@@ -118,20 +122,31 @@ export default function EditorPage() {
       />
 
       {/* RIGHT */}
-      <section className="overflow-auto bg-gray-50 p-8">
-        {invitation.sections.map((section) => (
-          <SectionRenderer
-            key={section.id}
-            section={section}
-            isSelected={selectedSection === section.id}
-            selectedComponentId={selectedComponent}
-            onSelectSection={(id) => {
-              setSelectedSection(id);
-              setSelectedComponent(null);
+      <section className="overflow-auto bg-gray-100">
+        <div className="flex justify-center p-5">
+          <div
+            style={{
+              zoom: 0.7,
+              width: "100%",
+              maxWidth: "1600px",
             }}
-            onSelectComponent={(id) => setSelectedComponent(id)}
-          />
-        ))}
+            className="origin-top"
+          >
+            {invitation.sections.map((section) => (
+              <SectionRenderer
+                key={section.id}
+                section={section}
+                isSelected={selectedSection === section.id}
+                selectedComponentId={selectedComponent}
+                onSelectSection={(id) => {
+                  setSelectedSection(id);
+                  setSelectedComponent(null);
+                }}
+                onSelectComponent={(id) => setSelectedComponent(id)}
+              />
+            ))}
+          </div>
+        </div>
       </section>
     </main>
   );
