@@ -11,7 +11,574 @@ export default function CreateInvitationPage() {
 
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
-  const [jsonInput, setJsonInput] = useState("");
+  const [jsonInput, setJsonInput] = useState(
+    JSON.stringify({
+      createdAt: "2026-06-24T10:00:00Z",
+      id: "api-workshop-demo-001",
+      sections: [
+        {
+          components: [
+            {
+              id: "hero-badge",
+              style: {
+                color: "#BFDBFE",
+                fontSize: 14,
+                fontWeight: 700,
+                padding: 18,
+              },
+              type: "badge",
+              value: "LIMITED COHORT • LIVE • PRODUCTION ENGINEERING",
+            },
+            {
+              id: "hero-proof",
+              style: {
+                color: "#CBD5E1",
+                fontSize: 18,
+              },
+              type: "subtitle",
+              value:
+                "Trusted by 1200+ engineers across startups and enterprise teams",
+            },
+            {
+              id: "hero-title",
+              style: {
+                background: {
+                  angle: 90,
+                  stops: [
+                    {
+                      color: "#FFFFFF",
+                      id: "a",
+                      position: 0,
+                    },
+                    {
+                      color: "#C4B5FD",
+                      id: "b",
+                      position: 50,
+                    },
+                    {
+                      color: "#67E8F9",
+                      id: "c",
+                      position: 100,
+                    },
+                  ],
+                  type: "linear",
+                },
+                fontSize: 92,
+                fontWeight: 900,
+                textAlign: "center",
+                width: 1300,
+              },
+              type: "title",
+              value:
+                "Master The API Architecture Patterns Used By Modern Engineering Teams",
+            },
+            {
+              id: "hero-text",
+              style: {
+                color: "#E2E8F0",
+                fontSize: 26,
+                textAlign: "center",
+                width: 920,
+              },
+              type: "text",
+              value:
+                "Design resilient APIs, implement enterprise security, deploy modern infrastructure and ship production-grade systems through guided hands-on delivery.",
+            },
+            {
+              action: {
+                newTab: false,
+                type: "navigate",
+                url: "/register",
+              },
+              id: "hero-cta",
+              style: {
+                borderRadius: 999,
+                color: "#2563EB",
+                fontSize: 18,
+                fontWeight: 700,
+                padding: 24,
+                width: 360,
+              },
+              type: "button",
+              value: "Reserve Your Seat →",
+            },
+            {
+              action: {
+                type: "navigate",
+                url: "#curriculum",
+              },
+              id: "hero-secondary",
+              style: {
+                borderRadius: 999,
+                color: "#FFFFFF",
+                fontSize: 18,
+                fontWeight: 700,
+                padding: 20,
+                width: 320,
+              },
+              type: "button",
+              value: "View Curriculum",
+            },
+          ],
+          id: "hero",
+          layout: {
+            align: "center",
+            background: {
+              type: "gradient",
+              value: {
+                angle: 0,
+                radial: {
+                  shape: "circle",
+                  x: 50,
+                  y: 10,
+                },
+                stops: [
+                  {
+                    color: "#020617",
+                    id: "1",
+                    position: 0,
+                  },
+                  {
+                    color: "#172554",
+                    id: "2",
+                    position: 45,
+                  },
+                  {
+                    color: "#1D4ED8",
+                    id: "3",
+                    position: 72,
+                  },
+                  {
+                    color: "#06B6D4",
+                    id: "4",
+                    position: 100,
+                  },
+                ],
+                type: "radial",
+              },
+            },
+            height: 980,
+            justifyContent: "center",
+            padding: 120,
+            width: "full",
+          },
+          type: "hero",
+        },
+        {
+          components: [
+            {
+              id: "m1",
+              type: "badge",
+              value: "OUTCOMES",
+            },
+            {
+              id: "m2",
+              style: {
+                fontSize: 64,
+                fontWeight: 900,
+                textAlign: "center",
+                width: 1200,
+              },
+              type: "title",
+              value:
+                "Leave With Skills That Immediately Transfer To Production",
+            },
+            {
+              id: "m3",
+              style: {
+                color: "#64748B",
+                fontSize: 24,
+              },
+              type: "subtitle",
+              value:
+                "Built for backend engineers, platform teams and software developers.",
+            },
+            {
+              id: "m4",
+              type: "stat",
+              value: "1200+\nEngineers",
+            },
+            {
+              id: "m5",
+              type: "stat",
+              value: "95%\nSatisfaction",
+            },
+            {
+              id: "m6",
+              type: "stat",
+              value: "18\nSessions",
+            },
+            {
+              id: "m7",
+              type: "stat",
+              value: "3\nExperts",
+            },
+          ],
+          id: "metrics",
+          layout: {
+            align: "center",
+            background: {
+              type: "gradient",
+              value: {
+                angle: 180,
+                stops: [
+                  {
+                    color: "#FFFFFF",
+                    id: "1",
+                    position: 0,
+                  },
+                  {
+                    color: "#F8FAFC",
+                    id: "2",
+                    position: 100,
+                  },
+                ],
+                type: "linear",
+              },
+            },
+            height: 760,
+            justifyContent: "center",
+            padding: 160,
+            width: "full",
+          },
+          type: "section",
+        },
+        {
+          components: [
+            {
+              id: "b1",
+              style: {
+                fontSize: 66,
+                fontWeight: 900,
+                textAlign: "center",
+              },
+              type: "title",
+              value: "Everything You Need To Build Production APIs",
+            },
+            {
+              id: "b2",
+              style: {
+                fontSize: 24,
+              },
+              type: "list",
+              value: [
+                "Enterprise REST Design",
+                "GraphQL APIs",
+                "OAuth + JWT Security",
+                "API Gateway Patterns",
+                "Caching & Redis",
+                "Observability",
+                "Docker Infrastructure",
+                "CI/CD Delivery",
+                "Performance Optimization",
+                "Scaling Patterns",
+                "Documentation Standards",
+                "Deployment Automation",
+              ],
+            },
+          ],
+          id: "benefits",
+          layout: {
+            align: "center",
+            background: {
+              type: "gradient",
+              value: {
+                angle: 180,
+                stops: [
+                  {
+                    color: "#EFF6FF",
+                    id: "1",
+                    position: 0,
+                  },
+                  {
+                    color: "#FFFFFF",
+                    id: "2",
+                    position: 100,
+                  },
+                ],
+                type: "linear",
+              },
+            },
+            height: 980,
+            justifyContent: "center",
+            padding: 160,
+            width: "full",
+          },
+          type: "section",
+        },
+        {
+          components: [
+            {
+              id: "c1",
+              style: {
+                fontSize: 64,
+              },
+              type: "title",
+              value: "3 Days. One Complete Production Workflow",
+            },
+            {
+              id: "c2",
+              style: {
+                fontSize: 28,
+              },
+              type: "list",
+              value: [
+                "Day 1 → Architecture • REST • GraphQL • Design Systems",
+                "Day 2 → Security • Auth • Rate Limits • Gateways",
+                "Day 3 → Docker • Monitoring • Deployment • Capstone",
+              ],
+            },
+          ],
+          id: "curriculum",
+          layout: {
+            align: "center",
+            background: {
+              type: "gradient",
+              value: {
+                angle: 135,
+                stops: [
+                  {
+                    color: "#FFFFFF",
+                    id: "1",
+                    position: 0,
+                  },
+                  {
+                    color: "#ECFEFF",
+                    id: "2",
+                    position: 100,
+                  },
+                ],
+                type: "linear",
+              },
+            },
+            height: 980,
+            justifyContent: "center",
+            padding: 170,
+            width: "full",
+          },
+          type: "section",
+        },
+        {
+          components: [
+            {
+              id: "p1",
+              style: {
+                color: "#67E8F9",
+              },
+              type: "badge",
+              value: "PROJECT SHOWCASE",
+            },
+            {
+              id: "p2",
+              style: {
+                color: "#FFFFFF",
+                fontSize: 68,
+                fontWeight: 900,
+              },
+              type: "title",
+              value: "Build Systems That Look Like Real Products",
+            },
+            {
+              id: "p3",
+              style: {
+                color: "#CBD5E1",
+                fontSize: 28,
+              },
+              type: "list",
+              value: [
+                "Authentication Platform",
+                "API Gateway",
+                "Observability Dashboard",
+                "CI/CD Pipeline",
+                "Developer Portal",
+                "Monitoring Infrastructure",
+              ],
+            },
+          ],
+          id: "projects",
+          layout: {
+            align: "center",
+            background: {
+              type: "color",
+              value: "#020617",
+            },
+            height: 900,
+            justifyContent: "center",
+            padding: 160,
+            width: "full",
+          },
+          type: "section",
+        },
+        {
+          components: [
+            {
+              id: "t1",
+              style: {
+                fontSize: 62,
+                fontWeight: 900,
+              },
+              type: "title",
+              value: "Loved By Engineers Across Teams",
+            },
+            {
+              id: "t2",
+              style: {
+                fontSize: 24,
+              },
+              type: "list",
+              value: [
+                "★★★★★ • Senior Backend Engineer • Cut months of learning",
+                "★★★★★ • Platform Engineer • Best architecture workshop attended",
+                "★★★★★ • Engineering Lead • Immediate production impact",
+              ],
+            },
+          ],
+          id: "testimonials",
+          layout: {
+            align: "center",
+            background: {
+              type: "color",
+              value: "#FFFFFF",
+            },
+            height: 880,
+            justifyContent: "center",
+            padding: 150,
+            width: "full",
+          },
+          type: "section",
+        },
+        {
+          components: [
+            {
+              id: "f1",
+              style: {
+                fontSize: 60,
+              },
+              type: "title",
+              value: "Frequently Asked Questions",
+            },
+            {
+              id: "f2",
+              style: {
+                fontSize: 22,
+              },
+              type: "list",
+              value: [
+                "Do I need backend experience?",
+                "Will recordings be available?",
+                "Will certificates be included?",
+                "Are projects production-grade?",
+                "Will source code be shared?",
+                "Can teams enroll together?",
+              ],
+            },
+          ],
+          id: "faq",
+          layout: {
+            align: "center",
+            background: {
+              type: "gradient",
+              value: {
+                angle: 180,
+                stops: [
+                  {
+                    color: "#F8FAFC",
+                    id: "1",
+                    position: 0,
+                  },
+                  {
+                    color: "#FFFFFF",
+                    id: "2",
+                    position: 100,
+                  },
+                ],
+                type: "linear",
+              },
+            },
+            height: 950,
+            justifyContent: "center",
+            padding: 160,
+            width: "full",
+          },
+          type: "section",
+        },
+        {
+          components: [
+            {
+              id: "fc1",
+              style: {
+                color: "#FFFFFF",
+                fontSize: 78,
+                fontWeight: 900,
+                textAlign: "center",
+              },
+              type: "title",
+              value: "Start Building Systems That Scale",
+            },
+            {
+              id: "fc2",
+              style: {
+                color: "#E0F2FE",
+                fontSize: 24,
+              },
+              type: "subtitle",
+              value:
+                "Join the next cohort and build production-ready API skills.",
+            },
+            {
+              action: {
+                type: "navigate",
+                url: "/register",
+              },
+              id: "fc3",
+              style: {
+                borderRadius: 999,
+                color: "#2563EB",
+                fontSize: 20,
+                fontWeight: 700,
+                padding: 24,
+                width: 360,
+              },
+              type: "button",
+              value: "Join Workshop",
+            },
+          ],
+          id: "final-cta",
+          layout: {
+            align: "center",
+            background: {
+              type: "gradient",
+              value: {
+                angle: 135,
+                stops: [
+                  {
+                    color: "#2563EB",
+                    id: "1",
+                    position: 0,
+                  },
+                  {
+                    color: "#8B5CF6",
+                    id: "2",
+                    position: 100,
+                  },
+                ],
+                type: "linear",
+              },
+            },
+            height: 620,
+            justifyContent: "center",
+            padding: 200,
+            width: "full",
+          },
+          type: "section",
+        },
+      ],
+      slug: "modern-api-engineering-workshop",
+      status: "published",
+      title: "Modern API Engineering Workshop",
+      updatedAt: "2026-06-24T10:00:00Z",
+    }),
+  );
 
   const handleCreate = async () => {
     if (!title.trim()) return;
@@ -83,570 +650,7 @@ export default function CreateInvitationPage() {
         />
 
         <textarea
-          value={
-            jsonInput ||
-            `{
-  "id": "api-workshop-demo-001",
-  "slug": "modern-api-engineering-workshop",
-  "title": "Modern API Engineering Workshop",
-  "status": "published",
-  "createdAt": "2026-06-24T10:00:00Z",
-  "updatedAt": "2026-06-24T10:00:00Z",
-  "sections": [
-    {
-      "id": "hero",
-      "type": "hero",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 120,
-        "height": 980,
-        "background": {
-          "type": "gradient",
-          "value": {
-            "type": "radial",
-            "angle": 0,
-            "radial": {
-              "shape": "circle",
-              "x": 50,
-              "y": 10
-            },
-            "stops": [
-              {
-                "id": "1",
-                "color": "#020617",
-                "position": 0
-              },
-              {
-                "id": "2",
-                "color": "#172554",
-                "position": 45
-              },
-              {
-                "id": "3",
-                "color": "#1D4ED8",
-                "position": 72
-              },
-              {
-                "id": "4",
-                "color": "#06B6D4",
-                "position": 100
-              }
-            ]
-          }
-        }
-      },
-      "components": [
-        {
-          "id": "hero-badge",
-          "type": "badge",
-          "value": "LIMITED COHORT • LIVE • PRODUCTION ENGINEERING",
-          "style": {
-            "fontSize": 14,
-            "fontWeight": 700,
-            "padding": 18,
-            "color": "#BFDBFE"
-          }
-        },
-        {
-          "id": "hero-proof",
-          "type": "subtitle",
-          "value": "Trusted by 1200+ engineers across startups and enterprise teams",
-          "style": {
-            "fontSize": 18,
-            "color": "#CBD5E1"
-          }
-        },
-        {
-          "id": "hero-title",
-          "type": "title",
-          "value": "Master The API Architecture Patterns Used By Modern Engineering Teams",
-          "style": {
-            "fontSize": 92,
-            "fontWeight": 900,
-            "textAlign": "center",
-            "width": 1300,
-            "background": {
-              "type": "linear",
-              "angle": 90,
-              "stops": [
-                {
-                  "id": "a",
-                  "color": "#FFFFFF",
-                  "position": 0
-                },
-                {
-                  "id": "b",
-                  "color": "#C4B5FD",
-                  "position": 50
-                },
-                {
-                  "id": "c",
-                  "color": "#67E8F9",
-                  "position": 100
-                }
-              ]
-            }
-          }
-        },
-        {
-          "id": "hero-text",
-          "type": "text",
-          "value": "Design resilient APIs, implement enterprise security, deploy modern infrastructure and ship production-grade systems through guided hands-on delivery.",
-          "style": {
-            "fontSize": 26,
-            "width": 920,
-            "textAlign": "center",
-            "color": "#E2E8F0"
-          }
-        },
-        {
-          "id": "hero-cta",
-          "type": "button",
-          "value": "Reserve Your Seat →",
-          "action": {
-            "type": "navigate",
-            "url": "/register",
-            "newTab": false
-          },
-          "style": {
-            "fontSize": 18,
-            "fontWeight": 700,
-            "padding": 24,
-            "width": 360,
-            "borderRadius": 999,
-            "color": "#2563EB"
-          }
-        },
-        {
-          "id": "hero-secondary",
-          "type": "button",
-          "value": "View Curriculum",
-          "action": {
-            "type": "navigate",
-            "url": "#curriculum"
-          },
-          "style": {
-            "fontSize": 18,
-            "fontWeight": 700,
-            "padding": 20,
-            "width": 320,
-            "borderRadius": 999,
-            "color": "#FFFFFF"
-          }
-        }
-      ]
-    },
-    {
-      "id": "metrics",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 160,
-        "height": 760,
-        "background": {
-          "type": "gradient",
-          "value": {
-            "type": "linear",
-            "angle": 180,
-            "stops": [
-              {
-                "id": "1",
-                "color": "#FFFFFF",
-                "position": 0
-              },
-              {
-                "id": "2",
-                "color": "#F8FAFC",
-                "position": 100
-              }
-            ]
-          }
-        }
-      },
-      "components": [
-        {
-          "id": "m1",
-          "type": "badge",
-          "value": "OUTCOMES"
-        },
-        {
-          "id": "m2",
-          "type": "title",
-          "value": "Leave With Skills That Immediately Transfer To Production",
-          "style": {
-            "fontSize": 64,
-            "fontWeight": 900,
-            "width": 1200,
-            "textAlign": "center"
-          }
-        },
-        {
-          "id": "m3",
-          "type": "subtitle",
-          "value": "Built for backend engineers, platform teams and software developers.",
-          "style": {
-            "fontSize": 24,
-            "color": "#64748B"
-          }
-        },
-        {
-          "id": "m4",
-          "type": "stat",
-          "value": "1200+\nEngineers"
-        },
-        {
-          "id": "m5",
-          "type": "stat",
-          "value": "95%\nSatisfaction"
-        },
-        {
-          "id": "m6",
-          "type": "stat",
-          "value": "18\nSessions"
-        },
-        {
-          "id": "m7",
-          "type": "stat",
-          "value": "3\nExperts"
-        }
-      ]
-    },
-    {
-      "id": "benefits",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 160,
-        "height": 980,
-        "background": {
-          "type": "gradient",
-          "value": {
-            "type": "linear",
-            "angle": 180,
-            "stops": [
-              {
-                "id": "1",
-                "color": "#EFF6FF",
-                "position": 0
-              },
-              {
-                "id": "2",
-                "color": "#FFFFFF",
-                "position": 100
-              }
-            ]
-          }
-        }
-      },
-      "components": [
-        {
-          "id": "b1",
-          "type": "title",
-          "value": "Everything You Need To Build Production APIs",
-          "style": {
-            "fontSize": 66,
-            "fontWeight": 900,
-            "textAlign": "center"
-          }
-        },
-        {
-          "id": "b2",
-          "type": "list",
-          "value": [
-            "Enterprise REST Design",
-            "GraphQL APIs",
-            "OAuth + JWT Security",
-            "API Gateway Patterns",
-            "Caching & Redis",
-            "Observability",
-            "Docker Infrastructure",
-            "CI/CD Delivery",
-            "Performance Optimization",
-            "Scaling Patterns",
-            "Documentation Standards",
-            "Deployment Automation"
-          ],
-          "style": {
-            "fontSize": 24
-          }
-        }
-      ]
-    },
-    {
-      "id": "curriculum",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 170,
-        "height": 980,
-        "background": {
-          "type": "gradient",
-          "value": {
-            "type": "linear",
-            "angle": 135,
-            "stops": [
-              {
-                "id": "1",
-                "color": "#FFFFFF",
-                "position": 0
-              },
-              {
-                "id": "2",
-                "color": "#ECFEFF",
-                "position": 100
-              }
-            ]
-          }
-        }
-      },
-      "components": [
-        {
-          "id": "c1",
-          "type": "title",
-          "value": "3 Days. One Complete Production Workflow",
-          "style": {
-            "fontSize": 64
-          }
-        },
-        {
-          "id": "c2",
-          "type": "list",
-          "value": [
-            "Day 1 → Architecture • REST • GraphQL • Design Systems",
-            "Day 2 → Security • Auth • Rate Limits • Gateways",
-            "Day 3 → Docker • Monitoring • Deployment • Capstone"
-          ],
-          "style": {
-            "fontSize": 28
-          }
-        }
-      ]
-    },
-    {
-      "id": "projects",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 160,
-        "height": 900,
-        "background": {
-          "type": "color",
-          "value": "#020617"
-        }
-      },
-      "components": [
-        {
-          "id": "p1",
-          "type": "badge",
-          "value": "PROJECT SHOWCASE",
-          "style": {
-            "color": "#67E8F9"
-          }
-        },
-        {
-          "id": "p2",
-          "type": "title",
-          "value": "Build Systems That Look Like Real Products",
-          "style": {
-            "fontSize": 68,
-            "fontWeight": 900,
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "p3",
-          "type": "list",
-          "value": [
-            "Authentication Platform",
-            "API Gateway",
-            "Observability Dashboard",
-            "CI/CD Pipeline",
-            "Developer Portal",
-            "Monitoring Infrastructure"
-          ],
-          "style": {
-            "fontSize": 28,
-            "color": "#CBD5E1"
-          }
-        }
-      ]
-    },
-    {
-      "id": "testimonials",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 150,
-        "height": 880,
-        "background": {
-          "type": "color",
-          "value": "#FFFFFF"
-        }
-      },
-      "components": [
-        {
-          "id": "t1",
-          "type": "title",
-          "value": "Loved By Engineers Across Teams",
-          "style": {
-            "fontSize": 62,
-            "fontWeight": 900
-          }
-        },
-        {
-          "id": "t2",
-          "type": "list",
-          "value": [
-            "★★★★★ • Senior Backend Engineer • Cut months of learning",
-            "★★★★★ • Platform Engineer • Best architecture workshop attended",
-            "★★★★★ • Engineering Lead • Immediate production impact"
-          ],
-          "style": {
-            "fontSize": 24
-          }
-        }
-      ]
-    },
-    {
-      "id": "faq",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 160,
-        "height": 950,
-        "background": {
-          "type": "gradient",
-          "value": {
-            "type": "linear",
-            "angle": 180,
-            "stops": [
-              {
-                "id": "1",
-                "color": "#F8FAFC",
-                "position": 0
-              },
-              {
-                "id": "2",
-                "color": "#FFFFFF",
-                "position": 100
-              }
-            ]
-          }
-        }
-      },
-      "components": [
-        {
-          "id": "f1",
-          "type": "title",
-          "value": "Frequently Asked Questions",
-          "style": {
-            "fontSize": 60
-          }
-        },
-        {
-          "id": "f2",
-          "type": "list",
-          "value": [
-            "Do I need backend experience?",
-            "Will recordings be available?",
-            "Will certificates be included?",
-            "Are projects production-grade?",
-            "Will source code be shared?",
-            "Can teams enroll together?"
-          ],
-          "style": {
-            "fontSize": 22
-          }
-        }
-      ]
-    },
-    {
-      "id": "final-cta",
-      "type": "section",
-      "layout": {
-        "align": "center",
-        "justifyContent": "center",
-        "width": "full",
-        "padding": 200,
-        "height": 620,
-        "background": {
-          "type": "gradient",
-          "value": {
-            "type": "linear",
-            "angle": 135,
-            "stops": [
-              {
-                "id": "1",
-                "color": "#2563EB",
-                "position": 0
-              },
-              {
-                "id": "2",
-                "color": "#8B5CF6",
-                "position": 100
-              }
-            ]
-          }
-        }
-      },
-      "components": [
-        {
-          "id": "fc1",
-          "type": "title",
-          "value": "Start Building Systems That Scale",
-          "style": {
-            "fontSize": 78,
-            "fontWeight": 900,
-            "color": "#FFFFFF",
-            "textAlign": "center"
-          }
-        },
-        {
-          "id": "fc2",
-          "type": "subtitle",
-          "value": "Join the next cohort and build production-ready API skills.",
-          "style": {
-            "fontSize": 24,
-            "color": "#E0F2FE"
-          }
-        },
-        {
-          "id": "fc3",
-          "type": "button",
-          "value": "Join Workshop",
-          "action": {
-            "type": "navigate",
-            "url": "/register"
-          },
-          "style": {
-            "fontSize": 20,
-            "fontWeight": 700,
-            "padding": 24,
-            "width": 360,
-            "borderRadius": 999,
-            "color": "#2563EB"
-          }
-        }
-      ]
-    }
-  ]
-}
-`
-          }
+          value={jsonInput}
           onChange={(e) => setJsonInput(e.target.value)}
           placeholder="Paste invitation JSON (optional)"
           className="w-full min-h-[220px] border px-3 py-2 rounded font-mono text-sm"
