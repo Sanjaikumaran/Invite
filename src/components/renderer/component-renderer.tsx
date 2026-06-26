@@ -73,6 +73,7 @@ export function ComponentRenderer({
     suppressContentEditableWarning: true,
     className: isSelected ? "ring-2 ring-green-500 " : "",
     onBlur: (e: any) => update(e.currentTarget.innerText || ""),
+    id: component.id,
   };
 
   switch (component.type) {

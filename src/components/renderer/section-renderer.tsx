@@ -52,6 +52,7 @@ export function SectionRenderer({
 
   return (
     <section
+      id={section.id}
       style={styles}
       onClick={() => onSelectSection(section.id)}
       className={
